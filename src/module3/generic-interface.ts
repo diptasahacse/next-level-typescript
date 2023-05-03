@@ -79,4 +79,26 @@ const crush7: WifeInterface<HusbandInterface, string> = {
   child: "Baby Name",
 };
 
-console.log(crush7);
+// Same thing with optional and default parameter
+interface WifeInterface1<T, X, U = null> {
+  name: string;
+  husband: T; // 'T' means I will say the type of husband while use
+  child: X; // 'X' means I will say the type of child while use
+  moreChild?: U; // by default it hold null but if we pass somethig then it will overwrite
+}
+interface HusbandInterface1 {
+  name: string;
+  developer: boolean;
+}
+
+const crush8: WifeInterface1<HusbandInterface1, string, boolean> = {
+  name: "Keya",
+  husband: {
+    name: "Dipta Saha",
+    developer: true,
+  },
+  child: "Baby Name",
+  moreChild: true, // it will replace with null
+};
+
+console.log(crush8);
