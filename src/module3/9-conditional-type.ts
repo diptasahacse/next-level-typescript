@@ -46,4 +46,39 @@ means, { wife1: string } this property with type is present Sheikh object or not
 means, output will be true
 
  */
-// Let's check for wife2 with multiple parameter example,
+// Let's check for wife2 with multiple parameter example,wife1 and wife2
+type CheckPropertyWithMultipleParameter<T, X> = X extends keyof T
+  ? true
+  : false;
+
+type CheckWife2 = CheckPropertyWithMultipleParameter<Sheikh, "wife2">;
+
+/**
+ * 1st parameter : I passed Sheikh which is an object type like this,
+{
+  wife1: string;
+  wife2: string;
+}
+2st parameter : I passed a string which will store in X,
+
+keyof T means, > 
+'wife1' | 'wife2'
+
+now, 'X extends keyof T' means
+'wife2' extends 'wife1' | 'wife2' => 'wife2' is 'wife1' or 'wife2' or not
+ 'wife2' extends 'wife1' | 'wife2' is true that means, means, CheckWife2 will be true
+ same thing with 'wife3'
+ */
+type CheckWife3 = CheckPropertyWithMultipleParameter<Sheikh, "wife3">; // will return false
+
+// let's see an another example,
+
+type Players = "Sakib" | "Musfik" | "Mostafiz";
+
+type RemovePlayer1<T> = T extends "Musfik" ? never : T; // "Sakib" | "Musfik" | "Mostafiz" extends "Musfik" ans is true that means "Musfik" will replace with never. but, when any value of union is changed by never then that value will be remove from that type.
+
+type CurrentPlayer = RemovePlayer1<Players>;  // when any value of union is changed by never then that value will be remove from that type. means CurrentPlayer will be "Sakib" | "Mostafiz"
+
+// let's do same thing with more dynamic with parameter
+type RemovePlayer2<T, X> = T extends X ? never : T;
+type CurrentPlayer1 = RemovePlayer2<Players, "Sakib">;
