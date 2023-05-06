@@ -31,7 +31,7 @@ if i use public with parameter in constractor then we won't need to write like b
 
 
 */
-// Simplified
+// Simplified version
 class Person {
   constructor(
     public name: string,
