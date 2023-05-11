@@ -17,27 +17,25 @@ interface IVehicle {
 }
 
 // I am telling that type of Vehicle class will be IVehicle by using implements
-class Vehicle implements IVehicle {
-  constructor(
-    public name: string,
-    public brand: string,
-    public model: string
-  ) {}
+class Vehicle implements IVehicle{
+  name:string;
+  brand:string;
+  model: string
 
-  // By using IVehicle, I must have to use below properties
+  constructor(name:string, brand:string, model:string){
+    this.name = name;
+    this.brand = brand;
+    this.model = model
+  }
+
   startEngine(): void {
-    console.log("I am starting engine..");
+    
   }
   StopEngine(): void {
-    console.log("I am stopping engine..");
+    
   }
-
   move(): void {
-    console.log("I am moving");
-  }
-  //   I can use any other method. It will be ok like this
-  test() {
-    console.log("I am for testing purpose");
+    
   }
 }
 
@@ -76,6 +74,7 @@ class Child1 extends Vehicle1 {
   StopEngine(): void {
     console.log("Stopping Engine");
   }
+ 
   move(): void {
     console.log("Moving");
   }
